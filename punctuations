@@ -1,0 +1,27 @@
+import string
+
+
+def first_word(text: str) -> str:
+    """
+        returns the first word in a given text.
+    """
+    # start
+    print("*******")
+    for c in string.punctuation
+    print("********")
+    translator = str.maketrans('', '', string.punctuation)
+    print(text.translate(string.punctuation).split())
+    print(text.translate(translator))
+    print("++++")
+
+    print(text[0:2])
+    return text[0:2]
+
+def second_attemt(text: str) -> str:
+    print ("*****Second attemt*******")
+    print (text [0:2])
+    return text [0:2]
+
+
+if __name__ == '__main__':
+    first_word("Text,!!with!!punctions")
