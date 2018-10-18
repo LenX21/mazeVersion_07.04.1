@@ -7,7 +7,8 @@ def first_word(text: str) -> str:
     """
     # start
     print("*******")
-    for c in string.punctuation
+    for c in string.punctuation:
+        print (c)
     print("********")
     translator = str.maketrans('', '', string.punctuation)
     print(text.translate(string.punctuation).split())
@@ -17,11 +18,14 @@ def first_word(text: str) -> str:
     print(text[0:2])
     return text[0:2]
 
-def second_attemt(text: str) -> str:
-    print ("*****Second attemt*******")
-    print (text [0:2])
-    return text [0:2]
+
+def second_attempt(text: str) -> str:
+    for char in ',.':
+        text = text.replace(char, ' ').strip()
+    text = text.split(' ')
+    return text[0]
 
 
 if __name__ == '__main__':
-    first_word("Text,!!with!!punctions")
+    first_word("Text,!! with!! punctuations")
+    second_attempt("greetings, friends")
