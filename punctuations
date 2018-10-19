@@ -1,22 +1,11 @@
 import string
 
 
-def first_word(text: str) -> str:
-    """
-        returns the first word in a given text.
-    """
-    # start
-    print("*******")
-    for c in string.punctuation:
-        print (c)
-    print("********")
-    translator = str.maketrans('', '', string.punctuation)
-    print(text.translate(string.punctuation).split())
-    print(text.translate(translator))
-    print("++++")
+import re
 
-    print(text[0:2])
-    return text[0:2]
+
+def first_word(text: str) -> str:
+    return re.search("([\w']+)", text).group(1)
 
 
 def second_attempt(text: str) -> str:
@@ -24,8 +13,19 @@ def second_attempt(text: str) -> str:
         text = text.replace(char, ' ').strip()
     text = text.split(' ')
     return text[0]
+def findOccurrence(word: list) -> str:
+    occurrence = None
+    secondPlace = None
+    try:
+        firstPlace = word[0].index(word[1])
+        occurrence = word[0].index(word[1], firstPlace+1)
+    except ValueError:
+        pass
+    print(occurrence)
+    return occurrence
 
 
 if __name__ == '__main__':
-    first_word("Text,!! with!! punctuations")
-    second_attempt("greetings, friends")
+    #first_word("Text,!! with!! punctuations")
+    #second_attempt("greetings, friends")
+    findOccurrence(['sims', ' '])
