@@ -15,7 +15,6 @@ def second_attempt(text: str) -> str:
     return text[0]
 def findOccurrence(word: list) -> str:
     occurrence = None
-    secondPlace = None
     try:
         firstPlace = word[0].index(word[1])
         occurrence = word[0].index(word[1], firstPlace+1)
@@ -24,8 +23,37 @@ def findOccurrence(word: list) -> str:
     print(occurrence)
     return occurrence
 
+def betweenMarkers(text: str, symbolStart: str, symbolEnd: str) -> str:
+    """
+    :param text:
+    :param symbolstart:
+    :param symbolEnd:
+    :return:
+
+    You are given a string and two markers (the initial and final).
+    You have to find a substring enclosed between these two markers. But there are a few important conditions:
+    """
+
+    try:
+        first = text.index(symbolStart) + len(symbolStart)
+    except ValueError:
+        first = 0
+    try:
+        last = text.index(symbolEnd)
+    except ValueError:
+        last = len(text)
+
+    print(text[first:last])
+
+
+def showObject(obj: object):
+    for i in dir(obj):
+        print(f'{i:20} : {getattr(obj, i)}')
+
+
 
 if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
     #second_attempt("greetings, friends")
-    findOccurrence(['sims', ' '])
+    #findOccurrence(['sims', ' '])
+    betweenMarkers ("<head><title>My new site</title></head>", "<title>", "</title>")
