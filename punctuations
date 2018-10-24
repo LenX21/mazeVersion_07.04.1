@@ -4,6 +4,7 @@ import string
 import re
 
 
+
 def first_word(text: str) -> str:
     return re.search("([\w']+)", text).group(1)
 
@@ -45,15 +46,62 @@ def betweenMarkers(text: str, symbolStart: str, symbolEnd: str) -> str:
 
     print(text[first:last])
 
+def bestStock(best_stock: dict):
 
-def showObject(obj: object):
-    for i in dir(obj):
-        print(f'{i:20} : {getattr(obj, i)}')
+    print (max(best_stock, key=best_stock.get))
 
 
+def getItem(dictName: dict, keysName: str):
+    return dictName[keysName]
+
+def allwords(text: str, popwords: list):
+
+    allwords = text.strip().split(' ')
+    print(allwords)
+    allword2 = []
+    allword4 = {}
+
+    for i in allwords:
+        if i.isalpha():
+            allword2.append(i)
+
+    allword3 = [ items.lower().splitlines() for items in text.strip().lower().split(' ') if items.isalpha() ]
+    print(allword3)
+    for i in popwords:
+        allword4[i] = allword3.count(i)
+
+    print(allword4)
+
+    allword5 = {key: allword3.count(key) for key in popwords}
+    import json
+    print(allword5)
+    print(json.dumps(allword5, indent=4))
+
+def popular_words(text: str, words: list) -> dict:
+
+    allwords = [ items.lower() for items in text.replace('\n', ' ').strip().split(' ') ]
+    result = {key: allwords.count(key) for key in words}
+    return result
+
+
+def biggerPrice(amount: int, items: list):
+    result = sorted(items, key= lambda x: x['price'], reverse=True)
+    print(result[0:amount])
 
 if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
     #second_attempt("greetings, friends")
     #findOccurrence(['sims', ' '])
     betweenMarkers ("<head><title>My new site</title></head>", "<title>", "</title>")
+    bestStock({
+    'CAC': 10.0,
+    'ATX': 390.2,
+    'WIG': 1.2})
+    allwords('''
+    When I was One
+    I had just begun
+    When I was Two
+    I was nearly new
+    ''', ['i', 'was', 'three', 'near'])
+
+    biggerPrice(1, [{"name": "water", "price": 1}, {"name": "wine", "price": 138}])
