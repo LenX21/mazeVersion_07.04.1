@@ -88,6 +88,29 @@ def biggerPrice(amount: int, items: list):
     result = sorted(items, key= lambda x: x['price'], reverse=True)
     print(result[0:amount])
 
+def mostNumbers(*args):
+    """
+    Input: An arbitrary number of arguments as numbers (int, float).
+    Output: The difference between maximum and minimum as a number (int, float).
+    :return:
+    """
+    try:
+        result = max(args) - min(args)
+    except ValueError:
+        result = 0
+
+    print(round(result, 1))
+
+def evenTheLast(numbers: list):
+    """
+    You should find the sum of the elements with even indexes (0th, 2nd, 4th...)
+    then multiply this summed number and the final element of the array together.
+    :param numbers:
+    :return:
+    """
+
+
+
 if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
     #second_attempt("greetings, friends")
@@ -105,3 +128,4 @@ if __name__ == '__main__':
     ''', ['i', 'was', 'three', 'near'])
 
     biggerPrice(1, [{"name": "water", "price": 1}, {"name": "wine", "price": 138}])
+    mostNumbers()
