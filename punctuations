@@ -114,6 +114,15 @@ def evenTheLast(numbers: list):
         result = sum(numbers[0::2])*numbers[-1]
     print(f'Result {result}')
 
+def secretMessage(text: str):
+    """
+    You are given a chunk of text.
+    Gather all capital letters in one word in the order that they appear in the text.
+    :param text:
+    :return:
+    """
+    result = [x for x in text if x.isupper()]
+    return ''.join(result)
 
 
 
@@ -121,18 +130,20 @@ if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
     #second_attempt("greetings, friends")
     #findOccurrence(['sims', ' '])
-    betweenMarkers ("<head><title>My new site</title></head>", "<title>", "</title>")
-    bestStock({
-    'CAC': 10.0,
-    'ATX': 390.2,
-    'WIG': 1.2})
-    allwords('''
-    When I was One
-    I had just begun
-    When I was Two
-    I was nearly new
-    ''', ['i', 'was', 'three', 'near'])
+    #betweenMarkers ("<head><title>My new site</title></head>", "<title>", "</title>")
 
-    biggerPrice(1, [{"name": "water", "price": 1}, {"name": "wine", "price": 138}])
-    mostNumbers()
-    evenTheLast([])
+    #bestStock({
+    #'CAC': 10.0,
+    #'ATX': 390.2,
+    #'WIG': 1.2})
+    #allwords('''
+    #When I was One
+    #I had just begun
+    #When I was Two
+    #I was nearly new
+    #''', ['i', 'was', 'three', 'near'])
+
+    #biggerPrice(1, [{"name": "water", "price": 1}, {"name": "wine", "price": 138}])
+    #mostNumbers()
+    #evenTheLast([])
+    assert secretMessage("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO", "hello"
