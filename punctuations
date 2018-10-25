@@ -189,11 +189,20 @@ def rightToLeft(instructions: set):
     """
     return (','.join(instructions).replace('right', 'left'))
 
+def digitsMultiplication_1(num: int):
 
+    newInt = [x for x in str(num) if x != '0']
+    result = 1
+    for x in newInt:
+        result = int(x)*result
+    print(result)
 
-
-
-
+def digitsMultiplication(num: int):
+    result = 1
+    for y in str(num):
+        if y == '0': continue
+        result = result * int(y)
+    print(result)
 
 if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
@@ -220,4 +229,5 @@ if __name__ == '__main__':
     threeWords('Hi')
     assert indexPower([1, 2], 3) == -1
     assert rightToLeft(("left", "right", "left", "stop")) == "left,left,left,stop", "All to left"
-    assert rightToLeft(("brightness wright",)) == "bleftness wleft", "One phrase"
+    digitsMultiplication(123405)
+
