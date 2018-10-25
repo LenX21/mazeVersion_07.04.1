@@ -204,6 +204,19 @@ def digitsMultiplication(num: int):
         result = result * int(y)
     print(result)
 
+def absoluteSorting(array: set):
+    print(sorted(array, key = lambda x: x*(-1) if x < 0 else x ))
+
+def theMostFrequent(array: list):
+    """
+        determines the most frequently occurring string in the sequence.
+    """
+    print(sorted(array, key= lambda e: array.count(e), reverse=True)[0])
+    print(sorted(array.count(e) for e in array)[0])
+
+
+
+
 if __name__ == '__main__':
     #first_word("Text,!! with!! punctuations")
     #second_attempt("greetings, friends")
@@ -230,4 +243,6 @@ if __name__ == '__main__':
     assert indexPower([1, 2], 3) == -1
     assert rightToLeft(("left", "right", "left", "stop")) == "left,left,left,stop", "All to left"
     digitsMultiplication(123405)
+    absoluteSorting((-1, 2, -3, 0))
+    theMostFrequent(['a', 'a', 'bi', 'bi', 'bi', '7', '7', '7', '7'])
 
