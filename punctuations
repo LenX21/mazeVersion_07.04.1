@@ -124,6 +124,56 @@ def secretMessage(text: str):
     result = [x for x in text if x.isupper()]
     return ''.join(result)
 
+def threeWords_test(text: str):
+    """
+    You are given a string with words and numbers separated by whitespaces (one space).
+    The words contains only letters. You should check if the string contains three words in succession.
+    For example, the string "start 5 one two three 7 end" contains three words in succession.
+    :return:
+    """
+    newtext = text.split(" ")
+    newarray = [x for x in newtext if x.isalpha()]
+    counter = 0
+    result = False
+    print(len(newtext))
+    print('-'*3)
+    print(''.join(newtext[counter:counter+3]).isalpha())
+    print('-'*3)
+    while counter < len(newtext)-2:
+        print(counter)
+        print(newtext[counter:counter+3])
+
+        if newtext[counter].isalpha() and newtext[counter+1].isalpha() and newtext[counter+2].isalpha():
+            result = True
+        counter += 1
+
+    print(result)
+
+def threeWords_test1(text: str):
+    newtext = text.split(" ")
+    counter = 0
+    result = False
+    while counter < len(newtext)-2 and len(newtext) >= 3:
+        result = ''.join(newtext[counter:counter+3]).isalpha()
+        if result:
+            break
+        counter += 1
+    print(result)
+
+def threeWords(text: str):
+    newtext = text.split(" ")
+    counter = 0
+    for x in newtext:
+        if x.isalpha():
+            counter += 1
+            if counter >= 3:
+                return True
+        else:
+            counter = 0
+    return False
+
+
+
 
 
 if __name__ == '__main__':
@@ -147,3 +197,10 @@ if __name__ == '__main__':
     #mostNumbers()
     #evenTheLast([])
     assert secretMessage("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO", "hello"
+    #assert threeWords("Hello World hello") == True
+    threeWords("He is 123 man")
+    threeWords("He is 123 man and a woman")
+    threeWords("He is 123 man and a woman 2")
+    threeWords("bla bla bla bla")
+    threeWords("Hello World hello")
+    threeWords('Hi')
