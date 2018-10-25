@@ -178,7 +178,16 @@ def indexPower(arrayL: list, indexI: int):
         return pow(arrayL[indexI], indexI)
     except IndexError:
         return -1
-
+def rightToLeft(instructions: set):
+    """
+    You are given a sequence of strings.
+    You should join these strings into chunk of text where the initial strings are separated by commas.
+    As a joke on the right handed robots, you should replace all cases of the words "right" with the word "left",
+    even if it's a part of another word. All strings are given in lowercase.
+    :param instructions:
+    :return:
+    """
+    return (','.join(instructions).replace('right', 'left'))
 
 
 
@@ -210,3 +219,5 @@ if __name__ == '__main__':
     #assert threeWords("Hello World hello") == True
     threeWords('Hi')
     assert indexPower([1, 2], 3) == -1
+    assert rightToLeft(("left", "right", "left", "stop")) == "left,left,left,stop", "All to left"
+    assert rightToLeft(("brightness wright",)) == "bleftness wleft", "One phrase"
