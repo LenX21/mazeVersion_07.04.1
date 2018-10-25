@@ -124,32 +124,15 @@ def secretMessage(text: str):
     result = [x for x in text if x.isupper()]
     return ''.join(result)
 
-def threeWords_test(text: str):
+
+def threeWords_test1(text: str):
     """
     You are given a string with words and numbers separated by whitespaces (one space).
     The words contains only letters. You should check if the string contains three words in succession.
     For example, the string "start 5 one two three 7 end" contains three words in succession.
+    :param text:
     :return:
     """
-    newtext = text.split(" ")
-    newarray = [x for x in newtext if x.isalpha()]
-    counter = 0
-    result = False
-    print(len(newtext))
-    print('-'*3)
-    print(''.join(newtext[counter:counter+3]).isalpha())
-    print('-'*3)
-    while counter < len(newtext)-2:
-        print(counter)
-        print(newtext[counter:counter+3])
-
-        if newtext[counter].isalpha() and newtext[counter+1].isalpha() and newtext[counter+2].isalpha():
-            result = True
-        counter += 1
-
-    print(result)
-
-def threeWords_test1(text: str):
     newtext = text.split(" ")
     counter = 0
     result = False
@@ -161,6 +144,14 @@ def threeWords_test1(text: str):
     print(result)
 
 def threeWords(text: str):
+    """
+    You are given a string with words and numbers separated by whitespaces (one space).
+    The words contains only letters. You should check if the string contains three words in succession.
+    For example, the string "start 5 one two three 7 end" contains three words in succession.
+
+    :param text:
+    :return:
+    """
     newtext = text.split(" ")
     counter = 0
     for x in newtext:
@@ -171,6 +162,25 @@ def threeWords(text: str):
         else:
             counter = 0
     return False
+
+def indexPower(arrayL: list, indexI: int):
+    """
+    You are given an array with positive numbers and a number N.
+    You should find the N-th power of the element in the array with the index N.
+    If N is outside of the array, then return -1.
+    Don't forget that the first element has the index 0.
+
+    :param arrayL:
+    :param indexI:
+    :return:
+    """
+    try:
+        return pow(arrayL[indexI], indexI)
+    except IndexError:
+        return -1
+
+
+
 
 
 
@@ -196,11 +206,7 @@ if __name__ == '__main__':
     #biggerPrice(1, [{"name": "water", "price": 1}, {"name": "wine", "price": 138}])
     #mostNumbers()
     #evenTheLast([])
-    assert secretMessage("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO", "hello"
+    #assert secretMessage("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO", "hello"
     #assert threeWords("Hello World hello") == True
-    threeWords("He is 123 man")
-    threeWords("He is 123 man and a woman")
-    threeWords("He is 123 man and a woman 2")
-    threeWords("bla bla bla bla")
-    threeWords("Hello World hello")
     threeWords('Hi')
+    assert indexPower([1, 2], 3) == -1
