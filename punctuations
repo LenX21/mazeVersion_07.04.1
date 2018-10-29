@@ -231,6 +231,11 @@ def baseNumbers(item: str, radix: int):
     except ValueError:
         return -1
 
+def theMostWantedLetter(text: str):
+    textnew = [y for y in text.lower() if y.isalpha()]
+
+    result = sorted(text.lower(), key=lambda x: text.count(x) if x.isalpha() else 0, reverse=True)[0]
+    print(result)
 
 
 if __name__ == '__main__':
@@ -239,10 +244,7 @@ if __name__ == '__main__':
     #findOccurrence(['sims', ' '])
     #betweenMarkers ("<head><title>My new site</title></head>", "<title>", "</title>")
 
-    #bestStock({
-    #'CAC': 10.0,
-    #'ATX': 390.2,
-    #'WIG': 1.2})
+    #bestStock({'CAC': 10.0, 'ATX': 390.2, 'WIG': 1.2})
     #allwords('''
     #When I was One
     #I had just begun
@@ -265,4 +267,6 @@ if __name__ == '__main__':
     assert baseNumbers("Z", 36) == 35
     assert baseNumbers("AB", 10) == -1
     assert baseNumbers("AF", 16) == 175
+    theMostWantedLetter("Hello World!")
+    theMostWantedLetter("AAaooo!!!!")
 
