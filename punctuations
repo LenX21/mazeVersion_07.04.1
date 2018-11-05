@@ -291,7 +291,7 @@ class LongRepeat_HomeSection():
             for i in self.line:
                 if previous == i:
                     counter += 1
-                    print(f'Counter: {counter}')
+                    #print(f'Counter: {counter}')
                 else:
                     counter = 1
                 previous = i
@@ -299,6 +299,28 @@ class LongRepeat_HomeSection():
                 if result < counter:
                     result = counter
         return result
+
+class AllTheSame():
+    def __init__(self, array: list):
+        self.array = array
+
+    def checkvalues(self):
+        counter = 0
+        if len(self.array) > 0:
+            previous = self.array[0]
+            for i in self.array:
+                if previous == i:
+                    counter += 1
+                else:
+                    counter = 0
+        print(f'Array len {len(self.array)}')
+        if counter == len(self.array):
+            return True
+        else:
+            return False
+
+
+
 
 
 
@@ -334,8 +356,10 @@ if __name__ == '__main__':
     assert theMostWantedLetter("AAaooo!!!!") == 'a'
     assert monkeyTyping("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
             {"sum", "hamlet", "infinity", "anything"}) == 1
-    obj1 = LongRepeat_HomeSection('aa')
-    assert obj1.counterletter() == 2
+    obj = LongRepeat_HomeSection('aa')
+    assert obj.counterletter() == 2
+    allthesame = AllTheSame([])
+    assert allthesame.checkvalues() == True
 
 
 
