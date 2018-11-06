@@ -339,10 +339,19 @@ it has at least one digit, as well as containing one uppercase letter and one lo
 The password contains only ASCII latin letters or digits.
 """
 class HousePassword():
+    """
+    The password will be considered strong enough if its length is greater than or equal to 10 symbols,
+    it has at least one digit, as well as containing one uppercase letter and one lowercase letter in it.
+    The password contains only ASCII latin letters or digits.
+    """
     def __init__(self, password: str):
         self.password = password
 
     def countlength(self):
+        """
+        Count length of password
+        :return:
+        """
         return len(self.password) >= 10
 
     def anydigit(self):
@@ -365,6 +374,63 @@ class HousePassword():
 
     def verification(self):
         return all( [self.countlength(), self.anydigit(), self.anylower(), self.anyupper()])
+
+
+class CaesarCipherDecriptor():
+    """
+    Your mission is to encrypt a secret message (text only, without special chars like "!", "&", "?" etc.)
+    using Caesar cipher where each letter of input text is replaced by another that stands at a fixed distance.
+    For example ("a b c", 3) == "d e f"
+    """
+    import string
+
+    def __init__(self, possition: int):
+        self.pos = possition
+        self.min_index = ord('a')
+        self.max_index = ord('z')+1
+        self.letters = [chr(i) for i in range(self.min_index, self.max_index)]
+
+    def decryption(self, encrypted: str):
+        decrypted = ''
+        for i in encrypted:
+            if i != " ":
+                index = self.letters.index(i)
+                newindex = index - self.pos
+                if (newindex < 0, newindex > len(self.letters)):
+                    newindex = newindex % len(self.letters)
+
+                decrypted = decrypted + self.letters[newindex]
+            else:
+                decrypted = decrypted + " "
+
+        return decrypted
+
+
+
+
+    def encryption(self, words: str):
+        #encryptedword = ''
+        encryptedword2 = ''
+
+        #print(([chr(i) for i in range(ord('a'), ord('z')+1)]))
+        #letters = [chr(i) for i in range(self.min_index, self.max_index)]
+
+        for i in words:
+            if i != ' ':
+                index = self.letters.index(i)
+                newindex = index + self.pos
+                if (newindex > len(self.letters), newindex < 0 ):
+                    newindex = newindex % len(self.letters)
+
+                #encryptedword = encryptedword+(chr(ord(i)+self.pos))
+
+                #print(f'Letter: {i} index: {index} -> {newindex}')
+                encryptedword2 = encryptedword2 + self.letters[newindex]
+            else:
+                #encryptedword = encryptedword+' '
+                encryptedword2 = encryptedword2 + ' '
+        #print(encryptedword)
+        return encryptedword2
 
 
 
@@ -415,7 +481,12 @@ if __name__ == '__main__':
     assert allthesame.checkvalues() == True
     checkpassword = HousePassword('QwErTy911poqqqq')
     assert checkpassword.verification() == True
-
+    caesar = CaesarCipherDecriptor(16)
+    assert caesar.encryption("simple text") == "iycfbu junj"
+    assert caesar.decryption("iycfbu junj") == "simple text"
+    caesar2 = CaesarCipherDecriptor(-3)
+    assert caesar2.encryption("a b c") == "x y z"
+    assert caesar2.decryption("x y z") == "a b c"
 
 
 
