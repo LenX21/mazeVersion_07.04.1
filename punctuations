@@ -245,6 +245,19 @@ def theMostWantedLetter_1(text: str):
     print(dicttext)
 
 def theMostWantedLetter(text: str):
+    """
+    You are given a text, which contains different english letters and punctuation symbols.
+    You should find the most frequent letter in the text. The letter returned must be in lower case.
+    While checking for the most wanted letter, casing does not matter, so for the purpose of your search,
+    "A" == "a". Make sure you do not count punctuation symbols, digits and whitespaces, only letters.
+
+    If you have two or more letters with the same frequency,
+    then return the letter which comes first in the latin alphabet.
+    For example -- "one" contains "o", "n", "e" only once for each, thus we choose "e".
+
+    :param text:
+    :return:
+    """
     textnew = sorted(text.lower())
     result = sorted(textnew, key=lambda x: textnew.count(x) if x.isalpha() else 0, reverse=True)[0]
     return result
@@ -313,11 +326,51 @@ class AllTheSame():
                     counter += 1
                 else:
                     counter = 0
-        print(f'Array len {len(self.array)}')
+    #    print(f'Array len {len(self.array)}')
         if counter == len(self.array):
             return True
         else:
             return False
+
+
+"""
+The password will be considered strong enough if its length is greater than or equal to 10 symbols,
+it has at least one digit, as well as containing one uppercase letter and one lowercase letter in it.
+The password contains only ASCII latin letters or digits.
+"""
+class HousePassword():
+    def __init__(self, password: str):
+        self.password = password
+
+    def countlength(self):
+        return len(self.password) >= 10
+
+    def anydigit(self):
+        for i in self.password:
+            if i.isdigit():
+                return True
+        return False
+
+    def anyupper(self):
+        for i in self.password:
+            if i.isupper():
+                return True
+        return False
+
+    def anylower(self):
+        for i in self.password:
+            if i.islower():
+                return True
+        return i.islower()
+
+    def verification(self):
+        return all( [self.countlength(), self.anydigit(), self.anylower(), self.anyupper()])
+
+
+
+
+
+
 
 
 
@@ -360,6 +413,8 @@ if __name__ == '__main__':
     assert obj.counterletter() == 2
     allthesame = AllTheSame([])
     assert allthesame.checkvalues() == True
+    checkpassword = HousePassword('QwErTy911poqqqq')
+    assert checkpassword.verification() == True
 
 
 
