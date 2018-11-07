@@ -405,9 +405,6 @@ class CaesarCipherDecriptor():
 
         return decrypted
 
-
-
-
     def encryption(self, words: str):
         #encryptedword = ''
         encryptedword2 = ''
@@ -432,6 +429,37 @@ class CaesarCipherDecriptor():
         #print(encryptedword)
         return encryptedword2
 
+class SunAngle():
+
+    """
+    Your task is to find the angle of the sun above the horizon knowing the time of the day.
+    Input data: the sun rises in the East at 6:00 AM, which corresponds to the angle of 0 degrees.
+    At 12:00 PM the sun reaches its zenith, which means that the angle equals 90 degrees.
+    6:00 PM is the time of the sunset so the angle is 180 degrees.
+    If the input will be the time of the night (before 6:00 AM or after 6:00 PM),
+    your function should return - "I don't see the sun!".
+    """
+    def time(self, gettime: str):
+        from datetime import datetime, time
+
+        print(gettime)
+        newtime = [int(i) for i in gettime.split(":")]
+        now = datetime.strptime(gettime,"%H:%M").time()
+
+        print(now)
+        if time(6,00) <= now <= time(18,00):
+            print(now)
+            print("It's a day")
+        else:
+            return "I don't see the sun!"
+
+    def countangle(self, time: str):
+        newtime = [int(i) for i in time.split(":")]
+        currenttime = newtime[0]*60 + newtime[1]
+        if 360 <= currenttime <= 1080:
+            return (currenttime - 360)*0.25
+        else:
+            return "I don't see the sun!"
 
 
 
@@ -487,6 +515,8 @@ if __name__ == '__main__':
     caesar2 = CaesarCipherDecriptor(-3)
     assert caesar2.encryption("a b c") == "x y z"
     assert caesar2.decryption("x y z") == "a b c"
+    sunagle = SunAngle()
+    sunagle.countangle('12:15')
 
 
 
