@@ -478,6 +478,7 @@ class TicTacToe():
         self.board = board
         self.point = startposition
 
+
     def checkX(self, board: list):
 
         for i in board:
@@ -575,18 +576,46 @@ class TicTacToe():
 
     def horizonta_len(self):
         for item in self.board:
-            if [x for x in item].count(item[0]) == len(item):
-                print(f'First chr: {item[0]} length: {len(item)}')
+            if [x for x in item].count(item[0]) == len(item) and item[0] != '.':
+                #print(f'First chr: {item[0]} length: {len(item)}')
+                #print(f'winner: {item[0]}')
                 return True
-            print(f'First chr: {item[0]} length: {len(item)}')
+            #print(f'First chr: {item[0]} length: {len(item)}')
         return False
 
     def vertical_len(self):
         for num, item in enumerate(self.board[0]):
-            print(num)
-            #print(item)
-            print(self.board[0])
-            print([self.board[x][num] for x in range(0, len(self.board[0]))])
+            #print([self.board[x][num] for x in range(0, len(self.board[0]))])
+            if [self.board[x][num] for x in range(0, len(self.board[0]))].count(item) == len(self.board[0]) and item != '.':
+                #print(f' First char: {item} length: {len(self.board[0])}')
+                return True
+        return False
+
+    def diagonal_len(self):
+        center = round(self.dimension / 2) -1
+        centercell = self.board[center][center]
+        #print(f'Center: {center} Center cell value: {centercell}')
+
+        firstcell = self.board[0][0]
+        lastcell = self.board[0][len(self.board[0])-1]
+        #print(f'First: {firstcell}  Last: {lastcell}')
+        #print([self.board[x][(self.dimension-1)-x] for x in range(0, self.dimension)])
+        if firstcell == centercell:
+            #print('First')
+            if [self.board[x][x] for x in range(0, self.dimension)].count(firstcell) == self.dimension:
+                return True
+        elif lastcell == centercell:
+            #print(lastcell)
+            #print([self.board[x][(self.dimension-1)-x] for x in range(0, self.dimension)])
+            if [self.board[x][(self.dimension-1)-x] for x in range(0, self.dimension)].count(lastcell) == self.dimension:
+                return True
+        print('Draw')
+        return False
+
+
+
+
+
 
 
 
@@ -657,9 +686,10 @@ if __name__ == '__main__':
     assert caesar2.decryption("x y z") == "a b c"
     sunagle = SunAngle()
     sunagle.countangle('12:15')
-    tictactoe = TicTacToe([".XX", "OOX", ".OO"])
-    assert tictactoe.verification() == 'D'
-    tictactoe.vertical_len()
+    tictactoe = TicTacToe(["...", "436", "389"])
+    #assert tictactoe.verification() == 'D'
+    tictactoe.diagonal_len()
+    tictactoe.horizonta_len()
 
 
 
